@@ -1,0 +1,97 @@
+一、可以打开已经存在的本地django项目
+1.点击“Open”
+
+二、可以通过git仓库下载django项目
+1.选择git
+2.复制粘贴django项目工程的git仓库地址
+
+
+三、创建新的django项目工程
+1.虚拟环境的意义
+a.为了不同项目之间能够相互独立
+b.不同项目如果使用的同一个模块版本不一致或者使用的python版本不一致
+
+2.切换虚拟环境
+    a.正常情况下打开Terminal之后会自动切换到虚拟环境中
+    b.查询是否进入虚拟环境中
+        pip list
+    b.如果未进入到虚拟环境中，可以手动进入到虚拟环境
+        打开Terminal执行 .\venv\Scripts\activate.ps1
+        打开Terminal执行 ..\dev16_venv\Scripts\activate.ps1
+
+3.安装django
+    a.使用国内安装源：https://pypi.douban.com/simple
+    b.使用命令行安装：pip install -i https://pypi.douban.com/simple django==3.2.13
+
+4.创建Django项目工程
+    》django-admin startproject 项目名称
+      会在terminal所在目录下，创建一个新的独立的django项目工程
+    》django-admin startproject 项目名称 .
+      会把terminal所在目录作为django项目的根目录，在此目录下创建项目
+    》项目名称：建议设置为Python中合法的标识符名称
+    》.代表在当前目录下创建
+
+5.启动django项目
+    方式一：
+        a.打开terminal，进入到虚拟环境（自动）
+        b.python manage.py runserver
+            会默认在127.0.0.1上监听8000端口
+        c.在其他端口监听
+            python manage.py runserver 其他大于1024的端口号
+        d.python manage.py runserver ip:port（ip:可以省略）
+        e.使用ctrl + c退出项目
+
+    方式二：
+        a.在Pycharm专业版本上创建django的启动器
+        b.点击右上角的“Add configuration” -> 点击“+”-> 选择“django” -> 设置启动的名称 -> 下方的“fix”
+            -> Enable Django support -> 选django项目路径 -> settings.py所在路径
+四、django项目工程结构
+1.与项目名称同名的目录
+dev16/          用于保存django项目各种配置信息，是一个包
+    asgi.py     用于启动ASGI协议应用服务器的入口文件，在异步项目部署中使用
+    settings.py 用于重写、指定django的全局配置信息
+    urls.py     用于创建全局路由信息
+    wsgi.py     用于启动WSGI协议应用服务器的入口文件，在项目部署上线时使用
+
+db.sqlite3      django默认的关系型文本数据库文件，一般在开发阶段使用
+manage.py       是django中命令行管理工具
+
+五、设置版本管理
+方式一：
+    打开VCS -> Enable Version Control -> git
+
+方式二：
+    》打开terminal，进入虚拟环境
+    》git init，会在当前路径下进行版本管理，创建一个.git目录（存放git所有的配置信息）
+    》创建提交者信息
+        本地：
+            git config --local user.name "用户名"
+            git config --local user.email "用户邮箱地址"
+
+        全局：
+            git config --global user.name "用户名"
+            git config --global user.email "用户邮箱地址"
+
+        常用命令：
+            git status
+            git add .
+            git rm --cached dev16/__pycache__
+            git rm -r --cached dev16/__pycache__
+            git config --local user.name "keyou"
+            git config --local user.email "keyou100@qq.com"
+            git config --local --list
+            git config --global user.name "keyou"
+            git config --global user.email "keyou100@qq.com"
+            git log
+            git branch -a
+            git checkout master
+            git checkout dev
+            git remote add origin git@github.com:keyou1/dev16.git
+            git remote -a
+            git remote
+
+            ls ~/.ssh/
+            ssh-keygen.exe
+            cat ~/.ssh/id_rsa.pub
+
+            git push -u origin --all
